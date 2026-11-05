@@ -1,0 +1,72 @@
+{
+  "manifestVersion": 2,
+  "id": "now-playing",
+  "name": "Now Playing",
+  "version": "0.1.0",
+  "description": "Shows what macOS is playing (Spotify, Music, browser...) with play/pause, next and back in the Orca sidebar. Needs `brew install media-control`.",
+  "engines": {
+    "orca": ">=1.4.248"
+  },
+  "execution": "trusted-worker",
+  "pluginApi": 1,
+  "main": "src/worker.ts",
+  "contributes": {
+    "panels": [
+      {
+        "id": "now-playing",
+        "title": "Now Playing",
+        "icon": "play",
+        "entry": "src/panel.tsx",
+        "ui": "components"
+      }
+    ],
+    "commands": [
+      {
+        "id": "nowPlaying.toggle",
+        "title": "Now Playing: Play/Pause"
+      },
+      {
+        "id": "nowPlaying.next",
+        "title": "Now Playing: Next"
+      },
+      {
+        "id": "nowPlaying.previous",
+        "title": "Now Playing: Previous"
+      }
+    ],
+    "statusBarItems": [
+      {
+        "id": "previous",
+        "text": "⏮",
+        "tooltip": "Previous",
+        "command": "nowPlaying.previous"
+      },
+      {
+        "id": "track",
+        "icon": "play",
+        "tooltip": "Play/Pause",
+        "command": "nowPlaying.toggle"
+      },
+      {
+        "id": "next",
+        "text": "⏭",
+        "tooltip": "Next",
+        "command": "nowPlaying.next"
+      }
+    ],
+    "settings": [
+      {
+        "key": "statusBar",
+        "title": "Show in status bar",
+        "description": "Show the current track in Orca's status bar; click it to play/pause.",
+        "type": "boolean",
+        "default": true
+      }
+    ]
+  },
+  "capabilities": [
+    {
+      "kind": "settings:own"
+    }
+  ]
+}
