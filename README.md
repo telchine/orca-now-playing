@@ -18,10 +18,10 @@ What your Mac is playing, inside [Orca](https://github.com/stablyai/orca). It re
 ```sh
 brew install media-control
 git clone https://github.com/telchine/orca-now-playing
-orca plugin dev watch ./orca-now-playing
+orca plugin dev load ./orca-now-playing
 ```
 
-Orca prints what the plugin asks for and the command to approve it: its own worker process, its own settings, three commands and the status bar items.
+`dev load` keeps the folder under Settings → Plugins → Development folders, across restarts. Orca prints what the plugin asks for and the command to approve it: its own worker process, its own settings, three commands and the status bar items.
 
 `media-control` is there because macOS 15.4 and later only lets entitled processes read Now Playing. macOS only, for the same reason.
 
@@ -40,6 +40,7 @@ Orca prints what the plugin asks for and the command to approve it: its own work
 orca plugin test .       # worker and panel tests
 orca plugin check .      # validate, then render the panel against the real worker
 orca plugin validate .   # the manifest alone
+orca plugin dev watch .  # live reload while editing; Ctrl-C unloads it
 ```
 
 ## Known limits
